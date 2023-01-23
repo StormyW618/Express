@@ -77,6 +77,7 @@ app.get('/users/:id', (req, res) => {
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
     let result = findUserById(id);
+    console.log(result);
     if (result === undefined || result.length == 0)
         res.status(404).send('Resource not found.');
     else {
