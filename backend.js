@@ -85,9 +85,9 @@ function createUserId(){
 
 app.post('/users', (req, res) => {
     // const userToAdd = req.body;
-    req.body.id = createUserId();
+    // req.body.id = createUserId();
     const userToAdd = req.body;
-    // userToAdd.id = createUserId();// userToAdd.id = createUserId();
+    userToAdd.id = createUserId();// userToAdd.id = createUserId();
     addUser(userToAdd);
     res.status(201).end();
 });
