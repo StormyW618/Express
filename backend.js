@@ -79,8 +79,15 @@ function findUserById(id) {
     //return users['users_list'].filter( (user) => user['id'] === id);
 }
 
+function createUserId(){
+    return (Math.round(Math.random() * 100));
+}
+
 app.post('/users', (req, res) => {
+    // const userToAdd = req.body;
+    req.body.id = createUserId();
     const userToAdd = req.body;
+    // userToAdd.id = createUserId();// userToAdd.id = createUserId();
     addUser(userToAdd);
     res.status(201).end();
 });
