@@ -76,12 +76,13 @@ app.get('/users/:id', (req, res) => {
 
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
+    console.log(id);
     let result = findUserById(id);
     console.log(result);
     if (result === undefined || result.length == 0)
         res.status(404).send('Resource not found.');
     else {
-        users['users_list'] = users['users_list'].find( (user) => user['id'] !== id);
+        users['users_list'] = users['users_list'].filter( (user) => user['id'] !== id);
         res.send(id);
         res.status(204).end();
         // result = {users_list: result};
@@ -89,6 +90,7 @@ app.delete('/users/:id', (req, res) => {
 });
 
 function findUserById(id) {
+    console.log("find: " + id);
     return users['users_list'].find( (user) => user['id'] === id); // or line below
     //return users['users_list'].filter( (user) => user['id'] === id);
 }
