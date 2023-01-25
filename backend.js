@@ -76,7 +76,7 @@ app.get('/users/:id', (req, res) => {
 
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
-    console.log(id);
+    console.log("Delete" + id);
     let result = findUserById(id);
     console.log(result);
     if (result === undefined || result.length == 0)
@@ -96,7 +96,7 @@ function findUserById(id) {
 }
 
 function createUserId(){
-    return (Math.round(Math.random() * 100));
+    return (Math.round(Math.random() * 100)).toString();
 }
 
 app.post('/users', (req, res) => {
@@ -105,8 +105,7 @@ app.post('/users', (req, res) => {
     const userToAdd = req.body;
     userToAdd.id = createUserId();// userToAdd.id = createUserId();
     addUser(userToAdd);
-    res.send(userToAdd);
-    res.status(201).end();
+    res.status(201).send(userToAdd);
 });
 
 function addUser(user){
